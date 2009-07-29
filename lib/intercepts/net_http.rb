@@ -21,7 +21,7 @@ module Net
       else
         Middleman.log "NOT IN CACHE"             
         result = old_request(*args, &block)        
-        Middleman.cache(key, result.body)
+        Middleman.cache(key, result)
       end
       
       if started? && Middleman.options[:verbose]
