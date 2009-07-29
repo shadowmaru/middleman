@@ -32,6 +32,10 @@ module Middleman
     end
     
     def retrieve(key)
+      if store[key] && Time.parse(store[key].header['expires']) < Time.now - 1800
+        store.clear
+        log "CACHE CLEARED"             
+      end
       return unless store
       store[key]
     end
